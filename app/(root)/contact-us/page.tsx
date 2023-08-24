@@ -1,5 +1,3 @@
-import { useState } from "react";
-import { Email } from "@/lib/smtp";
 import ContactForm from "@/components/forms/ContactForm";
 
 export default function ContactUs() {
