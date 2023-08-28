@@ -20,6 +20,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { ContactValidation } from "@/lib/contactValidation";
 import { Input } from "../ui/input";
 import { useState } from "react";
+import Link from "next/link";
 
 export default function ContactForm() {
   const [formSubmitted, setFormSubmitted] = useState(false);
@@ -59,7 +60,10 @@ export default function ContactForm() {
   if (!formSubmitted)
     return (
       <Form {...form}>
-        <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+        <form
+          className={`${submitting ? "ld-over" : ""} space-y-8 md:w-2/3`}
+          onSubmit={form.handleSubmit(onSubmit)}
+        >
           <FormField
             control={form.control}
             name="name"
@@ -126,12 +130,25 @@ export default function ContactForm() {
     if (isError) {
       return (
         <>
-          <h1>Oops!</h1>
-          <h3>Something went very wrong! Please try again later.</h3>
+          <div className="text-center h-screen">
+            <h1 className="font-bold text-6xl text-blue-900 my-10">Oops!</h1>
+            <h3 className="font-light text-xl text-blue-800 mb-10">
+              Something went very wrong! Please try againlater.
+            </h3>
+          </div>
         </>
       );
     } else {
-      return <h1>Message Received!</h1>;
+      return (
+        <div className="text-center h-screen">
+          <h1 className="font-bold text-6xl text-blue-900 my-10">
+            Message Received!
+          </h1>
+          <h3 className="font-light text-xl text-blue-800 mb-10">
+            We will reach out to you, very very soon!
+          </h3>
+        </div>
+      );
     }
   }
 }

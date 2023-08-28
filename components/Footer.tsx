@@ -4,7 +4,7 @@ import Link from "next/link";
 export default function Footer() {
   return (
     <section className="py-10 px-6 bg-blue-950 text-blue-300">
-      <div className="justify-items-center grid gap-5 grid-rows-2 grid-cols-2 items-center">
+      <div className="justify-items-center grid gap-5 grid-rows-2 sm:grid-cols-3 sm:grid-rows-1 grid-cols-2 items-center">
         <div className="row-span-full flex flex-col items-center justify-stretch">
           <Link href="/" className="flex items-center">
             <Image
