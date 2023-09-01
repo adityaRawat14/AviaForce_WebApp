@@ -1,7 +1,9 @@
 export default function Blog() {
   return (
-    <section>
-      <h1>Coming Soon!</h1>
+    <section className="h-screen flex flex-col items-center justify-center bg-blue-100">
+      <h1 className="text-blue-800 font-semibold text-3xl tracking-wider">
+        Coming Soon!
+      </h1>
     </section>
   );
 }

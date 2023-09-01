@@ -9,7 +9,6 @@ export default function Hero() {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 0.2 }}
         className=""
       >
         <h1 className="text-center lg:text-left text-4xl lg:text-5xl lg:mb-10 font-extrabold text-blue-950 mb-5">
@@ -28,7 +27,7 @@ export default function Hero() {
             Contact Us
           </Link>
           <Link
-            href={``}
+            href={`/about-us`}
             className="text-blue-900 font-semibold transition-all duration-300 underline hover:no-underline sm:px-10"
           >
             About us
@@ -38,7 +37,6 @@ export default function Hero() {
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 0.2 }}
         className="grow-1"
       >
         <Image

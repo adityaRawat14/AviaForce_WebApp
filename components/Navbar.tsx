@@ -13,7 +13,7 @@ export default function Navbar() {
   return (
     <header className="px-4 lg:px-6 py-2 bg-blue-950">
       <nav className="relative flex items-center justify-between">
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+        <div>
           <Link href="/" className="flex items-center">
             <Image
               src="/assets/logo.png"
@@ -26,7 +26,7 @@ export default function Navbar() {
               aviaforce&reg;
             </p>
           </Link>
-        </motion.div>
+        </div>
         <ul>
           <li>
             <AnimatePresence>
@@ -50,11 +50,7 @@ export default function Navbar() {
           </li>
         </ul>
         <AnimatePresence>
-          <motion.ul
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="hidden md:flex md:gap-4 items-center justify-end text-blue-200 lg:text-lg"
-          >
+          <ul className="hidden md:flex md:gap-4 items-center justify-end text-blue-200 lg:text-lg">
             <li>
               <Link
                 className={`${
@@ -95,7 +91,7 @@ export default function Navbar() {
                 Contact Us
               </Link>
             </li>
-          </motion.ul>
+          </ul>
         </AnimatePresence>
         <AnimatePresence>
           {isMenuOpen && (
