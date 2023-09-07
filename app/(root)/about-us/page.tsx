@@ -9,7 +9,7 @@ export default function AboutUs() {
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
-        className="h-auto flex flex-col items-center justify-around gap-14 my-20"
+        className="h-auto flex flex-col items-center justify-between gap-14 my-20"
       >
         <Image
           src={`/assets/logo-dark.png`}

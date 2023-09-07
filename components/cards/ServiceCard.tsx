@@ -24,7 +24,7 @@ export default function ServiceCard({
         id === 3 && `md:col-span-2 md:w-1/2 mx-auto lg:col-span-1 lg:w-full`
       } mb-8 bg-blue-50 p-6 rounded-xl shadow-xl hover:shadow-2xl hover:bg-blue-100 hover:-translate-y-2 transition-all duration-300`}
     >
-      <Link href={`/drones/${link}`}>
+      <Link href={``}>
         <Image
           src={coverImage}
           alt={name}
