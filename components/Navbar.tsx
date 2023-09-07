@@ -111,11 +111,11 @@ export default function Navbar() {
                   <div className="w-25 py-[1px] md:hidden rounded-full bg-blue-300"></div>
                 </li>
                 <li>
-                  <Link href={``}>Blog</Link>
+                  <Link href={`/blog`}>Blog</Link>
                   <div className="w-25 py-[1px] md:hidden rounded-full bg-blue-300"></div>
                 </li>
                 <li>
-                  <Link href={``}>Book a session</Link>
+                  <Link href={`/book-a-session`}>Book a session</Link>
                   <div className="w-25 py-[1px] md:hidden rounded-full bg-blue-300"></div>
                 </li>
                 <li>
