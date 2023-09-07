@@ -13,9 +13,7 @@ export default function Footer() {
               width={50}
               height={50}
             />
-            <p className="text-xl font-semibold text-blue-100">
-              aviaforce&reg;
-            </p>
+            <p className="text-xl font-semibold text-blue-100">aviaforce</p>
           </Link>
           <p className="text-xs font-light">&copy; @2023 Aviatrex Pvt. Ltd.</p>
         </div>
@@ -42,10 +40,9 @@ export default function Footer() {
               <Link href={`/contact-us`}>Contact us</Link>
             </li>
             <li>
-              <Link href={``}>Social media 2</Link>
-            </li>
-            <li>
-              <Link href={``}>Social Media 3</Link>
+              <Link href={`https://www.instagram.com/avia.force/`}>
+                Instagram
+              </Link>
             </li>
           </ul>
         </div>

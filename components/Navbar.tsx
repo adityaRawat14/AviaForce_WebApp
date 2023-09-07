@@ -12,18 +12,18 @@ export default function Navbar() {
 
   return (
     <header className="px-4 lg:px-6 py-2 bg-blue-950">
-      <nav className="relative flex items-center justify-between">
+      <nav className="relative flex items-center justify-between py-2">
         <div>
-          <Link href="/" className="flex items-center">
+          <Link href="/" className="flex gap-1 items-center">
             <Image
               src="/assets/logo.png"
               alt="Logo-img"
-              width={50}
-              height={50}
+              width={40}
+              height={40}
               className="lg:w-16"
             />
             <p className="text-xl lg:text-2xl font-semibold text-blue-100">
-              aviaforce&reg;
+              aviaforce
             </p>
           </Link>
         </div>
@@ -104,7 +104,7 @@ export default function Navbar() {
             >
               <ul
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
-                className="rounded-2xl transition-all duration-300 flex flex-col md:flex-row gap-6 md:gap-8 items-center justify-evenly md:justify-end font-semibold md:font-normal text-lg md:text-sm text-blue-950 md:text-blue-200 shadow-xl bg-blue-200 md:bg-transparent p-4 md:p-0"
+                className="rounded-2xl transition-all duration-300 flex flex-col md:flex-row gap-6 md:gap-8 items-center justify-evenly md:justify-end font-semibold md:font-normal text-lg md:text-sm text-blue-950 md:text-blue-200 shadow-xl bg-blue-100 md:bg-transparent p-4 md:p-0"
               >
                 <li>
                   <Link href={`/about-us`}>About Us</Link>
