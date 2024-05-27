@@ -2,44 +2,69 @@
 import React from "react";
 import Link from "next/link";
 import InputBox from "./Input";
-import {  FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import {  FieldValues,  useForm } from "react-hook-form";
 import OAuthButton from "./OAuthButton";
 import { signIn } from "next-auth/react";
+import { toast } from "../ui/use-toast";
+import { LoginSchema } from "@/app/zod/authenticationSchema";
+import { zodResolver } from "@hookform/resolvers/zod";
+
 
 
 export default function  LoginForm() {
 
   
-  
-  const {register,handleSubmit ,formState:{errors},setError} =useForm()
+  const {
+    register,
+    handleSubmit,
+    formState: { errors , isLoading},
+    setError,
+  } = useForm<FieldValues>({
+    resolver: zodResolver(LoginSchema), 
+  });
 
 
-  const submitForm:SubmitHandler<FieldValues>=(data:FieldValues) => {
- 
-    if(!data.email){
-      setError("email",{message:"Email is required !!"})
+  const submitForm =async (data:any) => {
+    const formData=(LoginSchema.safeParse(data))
+    
+    if(!formData.success){
+      toast({
+        title: "Submission Error",
+        description: "Fill the form correctly or try again later",
+      })
       return ;
     }
-     if(!data.password){
-      setError("password",{message:"password is required !!"})
-      return ;
-    }
+    try {
+       const loginResponse= await fetch(`http://localhost:4000/auth/login?email=${formData.data.email}&password=${formData.data.password}`)
+       const response=await loginResponse.json()
+      if(response.error){
+        toast({
+          title: "Login Failed",
+          description: response.message,
+        })
+      }else{
+        const signInResponse= await signIn('credentials',{
+          email:formData.data.email,
+          password:formData.data.password,
+        })
 
-    handleLogin({
-      email:data.email,
-      password:data.password
-    })
-  
-   
-    }
-
-    const handleLogin=async (credentials:FieldValues)=>{
-      const signinResponse=await signIn('credentials',credentials)
-      if(!signinResponse){
-        setError("password",{message:"Enter Valid Credentials !!"})
+        if(signInResponse?.status!=200){
+          toast({
+            title: "Login Failed",
+            description: "refresh and try again",
+          })
+        }
       }
+     
+   
+    } catch (error) {
+      toast({
+        title: "Login Failed",
+        description: "Failed to login please try again later",
+      })
+      return ;
     }
-
+  };
 
   
 
@@ -53,6 +78,7 @@ export default function  LoginForm() {
         <label htmlFor="email">Email Address</label>
           <InputBox
           //@ts-ignore
+            
             id="email"
             placeholder="johndoe@gmail.com"
             type="email"
@@ -83,6 +109,7 @@ export default function  LoginForm() {
 
         <div className="flex gap-3 pt-[20px] flex-col">
           <button
+          disabled={isLoading}
             className=" border-[1px] border-gray-500 bg-gradient-to-br relative group/btn from-black dark:from-zinc-900 dark:to-zinc-900 to-neutral-600 block dark:bg-zinc-800 w-full text-white rounded-md h-10 font-medium shadow-[0px_1px_0px_0px_#ffffff40_inset,0px_-1px_0px_0px_#ffffff40_inset] dark:shadow-[0px_1px_0px_0px_var(--zinc-800)_inset,0px_-1px_0px_0px_var(--zinc-800)_inset]"
             type="submit"
           >
@@ -113,10 +140,10 @@ export default function  LoginForm() {
         </span>
       </form>
         <div className="flex  gap-5 ">
-          <OAuthButton  type="github">
+          <OAuthButton   disabled={isLoading} type="github">
           <BottomGradient />
           </OAuthButton>
-          <OAuthButton  type="google">
+          <OAuthButton  disabled={isLoading} type="google">
            <BottomGradient />
           </OAuthButton>
          

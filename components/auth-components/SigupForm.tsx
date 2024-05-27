@@ -2,58 +2,67 @@
 import React from "react";
 import InputBox from "./Input";
 import Link from "next/link";
-import { signIn } from "next-auth/react";
-import {useForm} from 'react-hook-form'
+
+import { FieldValues, useForm} from 'react-hook-form'
 import OAuthButton from "./OAuthButton";
 import { useRouter } from "next/navigation";
+import { SignupSchema } from "@/app/zod/authenticationSchema";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { toast } from "../ui/use-toast";
 
 
 export default function SignupForm() {
   const router=useRouter()
-  const {register,handleSubmit ,formState:{errors,isLoading},setError} =useForm()
+  const {
+    register,
+    handleSubmit,
+    formState: { errors , isLoading},
+    setError,
+  } = useForm<FieldValues>({
+    resolver: zodResolver(SignupSchema), 
+  });
 
 
 
   const submitForm =async (data:any) => {
-    if(data.password!=data.confirmPassword){
-      setError("confirmPassword",{type:"validate",message:"both passwords should match !"})
-    }else{
-
-      console.log("data",data);
-      await handleSignup({
-        name:data.firstName+" "+data.lastName,
-        email:data.email,
-        password:data.password,
-        confirmPassword:data.confirmPassword
+    const formData=(SignupSchema.safeParse(data))
+    
+    if(!formData.success){
+      toast({
+        title: "Submission Error",
+        description: "Fill the form correctly or try again later",
       })
+      return ;
     }
-
-return ;
-  };
-
-
-
-  const handleSignup=async (data:any)=>{
-    const singup=await fetch("http://localhost:4000/auth/register",{
+     const signupResponse= await fetch("http://localhost:4000/auth/register",{
       method:"POST",body:JSON.stringify({
-        name:data.name,
         email:data.email,
         password:data.password,
-        confirmPassword:data.confirmPassword,
+        firstName:data.firstName,
+        lastName:data.lastName
       }),
       headers:{
         'Content-Type':'application/json'
       }
     })
 
-    const response=await singup.json()
+    const response=await signupResponse.json()
     if(response.error){
-  setError("password",{type:"validate",message:response.error})
+      toast({
+        title: "Signup Failed",
+        description: response.message,
+      })
     }else{
-      alert("your account has been created now you can login");
+      toast({
+        title: "Account created sucessfully",
+        description: response.message,
+      })
         router.push('/auth/login')
-    }
-  }
+    };
+return ;
+  };
+
+
 
 
   return (

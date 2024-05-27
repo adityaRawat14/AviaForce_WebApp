@@ -1,6 +1,5 @@
 "use client";
 import { AnimatePresence, motion } from "framer-motion";
-import blackDroneLoader from "@/public/assets/drone-loader-black.png";
 import blueDroneLoader from "@/public/assets/drone-loader-blue.png";
 import Image from "next/image";
 interface droneLoaderProps {

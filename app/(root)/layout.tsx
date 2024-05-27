@@ -5,6 +5,7 @@ import { Montserrat } from "next/font/google";
 import Footer from "@/components/Footer";
 import { Suspense } from "react";
 import Loading from "./loading";
+import { Toaster } from "@/components/ui/toaster"
 
 const montserrat = Montserrat({ subsets: ["latin"] });
 
@@ -25,8 +26,10 @@ export default function RootLayout({
         <Suspense fallback={<Loading />}>
           <Navbar />
           {children}
+
           <Footer />
         </Suspense>
+        <Toaster />
       </body>
     </html>
   );
