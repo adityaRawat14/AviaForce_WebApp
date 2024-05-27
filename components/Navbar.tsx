@@ -2,16 +2,18 @@
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence, spring } from "framer-motion";
-import { useEffect, useState } from "react";
+import { memo, useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 
-export default function Navbar() {
+
+ function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
+ 
 
   return (
-    <header className="px-4 lg:px-6 py-2 bg-blue-950">
+    <header className="px-4 lg:px-6 py-2  bg-blue-950 ">
       <nav className="relative flex items-center justify-between py-2">
         <div>
           <Link href="/" className="flex gap-1 items-center">
@@ -58,17 +60,19 @@ export default function Navbar() {
                 } hover:bg-blue-100 hover:text-blue-800 p-2 font-semibold rounded-lg transition-all duration-300`}
                 href={`/about-us`}
               >
+                
                 About Us
+
               </Link>
             </li>
             <li>
               <Link
                 className={`${
-                  pathname === "/blog" && "bg-blue-100 text-blue-800"
+                  pathname === "/blogs" && "bg-blue-100 text-blue-800"
                 } hover:bg-blue-100 hover:text-blue-800 p-2 font-semibold rounded-lg transition-all duration-300`}
-                href={`/blog`}
+                href={`/blogs`}
               >
-                Blog
+                Blogs
               </Link>
             </li>
             <li>
@@ -91,6 +95,16 @@ export default function Navbar() {
                 Contact Us
               </Link>
             </li>
+            <li>
+              <Link
+                className={`${
+                  pathname === "/auth/login" && "bg-blue-100 text-blue-800"
+                } hover:bg-blue-100 hover:text-blue-800 p-2 font-semibold rounded-lg transition-all duration-300`}
+                href={`/auth/login`}
+              >
+                Login
+              </Link>
+            </li>
           </ul>
         </AnimatePresence>
         <AnimatePresence>
@@ -111,7 +125,7 @@ export default function Navbar() {
                   <div className="w-25 py-[1px] md:hidden rounded-full bg-blue-300"></div>
                 </li>
                 <li>
-                  <Link href={`/blog`}>Blog</Link>
+                  <Link href={`/blogs`}>Blogs</Link>
                   <div className="w-25 py-[1px] md:hidden rounded-full bg-blue-300"></div>
                 </li>
                 <li>
@@ -130,3 +144,6 @@ export default function Navbar() {
     </header>
   );
 }
+
+
+export default memo(Navbar);
