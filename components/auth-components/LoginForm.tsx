@@ -43,10 +43,7 @@ export default function  LoginForm() {
           description: response.message,
         })
       }else{
-        const signInResponse= await signIn('credentials',{
-          email:formData.data.email,
-          password:formData.data.password,
-        })
+        const signInResponse= await signIn('credentials',response.data) // login response ={sucess , data:{firstname,lastname,email , image}}
 
         if(signInResponse?.status!=200){
           toast({

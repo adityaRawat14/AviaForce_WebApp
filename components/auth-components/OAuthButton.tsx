@@ -15,7 +15,7 @@ interface OAuthButtonInterface{
 const  OAuthButton:React.FC<OAuthButtonInterface>=({ type, className, children ,disabled=false }) =>{
   return (
     <button disabled={disabled} className={className + "  border-[1px]   border-gray-500  group/btn flex  gap-5 items-center relative justify-start px-4 w-full bg-black rounded-md h-10 font-medium shadow-input  dark:bg-zinc-900 dark:shadow-[0px_0px_1px_1px_var(--neutral-800)]" }
-    onClick={()=>{signIn("google")}}
+    onClick={()=>{signIn(type)}}
     >
       <span className="text-white ">
         {type == "github" ? <FaGithub /> : <FaGoogle />}

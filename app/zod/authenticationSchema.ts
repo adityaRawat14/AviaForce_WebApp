@@ -48,12 +48,32 @@ export const SignupSchema:ZodType<SignupFormData>= z.object({
 }
 
 export const LoginSchema:ZodType<LoginFormType>= z.object({
-   email: z.string().min(minEmailLength,"min 3 letters required").email("Invalid Email"),
+   email: z.string().email("Invalid Email").min(minEmailLength,"min 3 letters required"),
    password: z
      .string()
      .min(minPassLength, { message: "invalid password" })
      .max(maxPassLength, { message: "invalid password" }),
-   confirmPassword: z.string(),
  }).required()
  
 
+type SessionUserType={
+  email:string,
+  firstName:string,
+  lastName:string,
+  image?:string
+  id:string 
+}
+
+ export const SessionUserSchema=z.object({
+  email: z.string(),
+  firstName: z.string(),
+  lastName: z.string(),
+  image:z.string().optional().nullable(),
+  id:z.string()
+})
+ export const GoogleUserSchema=z.object({
+  email: z.string(),
+  firstName: z.string(),
+  image:z.string().optional().nullable(),
+  id:z.string()
+})
