@@ -29,6 +29,6 @@
     ".next/types/**/*.ts",
     "lib/smtp.js",
     "app/api/contact/route.js"
-, "auth.config.ts"  ],
+, "auth.config.ts", "app/api/auth/[...nextauth]/route.js"  ],
   "exclude": ["node_modules"]
 }

@@ -2,6 +2,34 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
+
+.blog-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(2, 100, 161) rgb(2, 2, 61);
+}
+
+.blog-scrollbar::-webkit-scrollbar {
+  width: 10px;
+  height: 4px;
+}
+
+.blog-scrollbar::-webkit-scrollbar-track {
+  background: rgb(2, 2, 61);
+}
+
+.blog-scrollbar::-webkit-scrollbar-thumb {
+  background: rgb(0, 157, 255);
+  height: 10px;
+}
+
+
+.ProseMirror:focus {
+  outline: none;
+}
+
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -66,14 +94,37 @@
   }
 }
 
-@layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
+p{
+  padding-top: 3px;
+  padding-bottom: 3px;
+  
 }
+
+
+
+strong{
+  margin-top: 3px;
+  margin-bottom: 3px;
+}
+
+
+
+ /* Hide scrollbar for Chrome, Safari and Opera */
+ .hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Hide scrollbar for IE, Edge and Firefox */
+.hide-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+} 
+.thin-scrollbar{
+  scrollbar-width: none;
+  
+}
+
+
 
 #bowlG {
   position: relative;
@@ -135,6 +186,15 @@
   -webkit-border-radius: 30px;
   -moz-border-radius: 30px;
 }
+
+
+
+.editor-container {
+  scrollbar-width: thin;
+}
+
+
+
 
 @keyframes ball_moveG {
   0% {
