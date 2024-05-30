@@ -86,12 +86,12 @@ function page() {
       </div>
       <div className="text-gray-600">Hi, I'm Hamza Khan, a full-stack developer experienced in the MERN, NEXT js stack. I turn ideas into practical web applications</div>
       <div className="flex gap-4">
-        <button className="bg-green-700 hover:bg-green-600  text-semibold text-white px-3 py-2 rounded-lg ">Follow</button> 
+        <button className="hover:bg-green-700 bg-green-600  text-semibold text-white px-3 py-2 rounded-lg ">Follow</button> 
         <button className=" bg-black  text-semibold text-white px-3 py-2 rounded-lg " >See Profile</button> 
       </div>
       <div className="w-full my-8"> 
       <h1 className="text-2xl font-semibold py-4">More from Hamza Khan</h1>
-     <div className=" rounded-lg shadow-[5px_10px_21px_10px_#00000024]"> <BlogsSection/></div>
+      <BlogsSection/>
       </div>
     </div>
       </div>

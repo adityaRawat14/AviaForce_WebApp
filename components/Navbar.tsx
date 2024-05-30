@@ -1,17 +1,18 @@
 "use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { motion, AnimatePresence, spring } from "framer-motion";
-import { memo, useEffect, useState } from "react";
+import { memo, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
-
+import { useSession } from "next-auth/react";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
  function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
- 
-
+  const session=useSession()
   return (
     <header className="px-4 lg:px-6 py-2  bg-blue-950 ">
       <nav className="relative flex items-center justify-between py-2">
@@ -96,14 +97,28 @@ import { usePathname, useRouter } from "next/navigation";
               </Link>
             </li>
             <li>
-              <Link
+             { 
+           !session?  <Link
                 className={`${
                   pathname === "/auth/login" && "bg-blue-100 text-blue-800"
                 } hover:bg-blue-100 hover:text-blue-800 p-2 font-semibold rounded-lg transition-all duration-300`}
                 href={`/auth/login`}
               >
                 Login
-              </Link>
+              </Link>:
+
+                 <div className="w-full h-full cursor-pointer">
+                   <AccountDropdown>
+                   <Avatar className=" h-8 w-8">
+                    <AvatarImage
+                      src="https://avatars.githubusercontent.com/u/125037123?v=4"
+                      alt="@shadcn"
+                    />
+                    <AvatarFallback className="bg-blue-100 text-black"><CiUser /></AvatarFallback>
+                  </Avatar>
+                   </AccountDropdown>
+                 </div>
+              }
             </li>
           </ul>
         </AnimatePresence>
@@ -147,3 +162,60 @@ import { usePathname, useRouter } from "next/navigation";
 
 
 export default memo(Navbar);
+
+
+
+
+
+
+
+
+
+import { CiUser , CiLogout } from "react-icons/ci";
+import { GoGear } from "react-icons/go";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+import EditProfile from "./edit-profile/EditProfile";
+
+export function AccountDropdown({children}:{children:React.ReactNode}) {
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+      {children}
+      </DropdownMenuTrigger>
+      <DropdownMenuContent className="w-56 bg-slate-950 border-none text-white">
+        <DropdownMenuLabel>My Account</DropdownMenuLabel>
+        <DropdownMenuSeparator className="bg-gray-400" />
+        <DropdownMenuGroup>
+          <DropdownMenuItem>
+            <CiUser className="mr-2 h-4 w-4" />
+           <Link href={"/profile"}>Profile</Link>
+          </DropdownMenuItem>
+          <DropdownMenuItem>
+            <GoGear className="mr-2 h-4 w-4" />
+            <EditProfile>
+            <span>Edit Profile</span>
+            </EditProfile>
+          </DropdownMenuItem>
+        
+       
+        </DropdownMenuGroup>
+        <DropdownMenuSeparator className="bg-gray-400" />
+         
+        
+        
+        <DropdownMenuItem>
+          <CiLogout className="mr-2 h-4 w-4" />
+          <span>Log out</span>
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  )
+}

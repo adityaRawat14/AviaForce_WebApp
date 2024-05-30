@@ -1,4 +1,4 @@
-import React, { useCallback,memo, useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import EditorNavButton from "./EditorNavButton";
 import {
   FaBold,
@@ -506,7 +506,7 @@ const HeadingDropdown=({children,editor,openHeadingDropdown,setOpenHeadingDropdo
 
   return(
     <DropdownMenu open={openHeadingDropdown}>
-  <DropdownMenuTrigger>
+  <DropdownMenuTrigger> 
     {children}
   </DropdownMenuTrigger>
   <DropdownMenuContent>
