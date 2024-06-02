@@ -26,8 +26,7 @@ export const SignupSchema:ZodType<SignupFormData>= z.object({
    .min(2, { message: "first name is too short" })
    .max(10, { message: "first name is too long" }),
    lastName: z.string()
-   .min(2, { message: "last name is too short" })
-   .max(10, { message: "last name is too long" }),
+   
  }).required({
     email:true,
     password:true,
@@ -58,22 +57,24 @@ export const LoginSchema:ZodType<LoginFormType>= z.object({
 
 type SessionUserType={
   email:string,
-  firstName:string,
-  lastName:string,
+  name:string,
   image?:string
   id:string 
 }
 
  export const SessionUserSchema=z.object({
   email: z.string(),
-  firstName: z.string(),
-  lastName: z.string(),
+  name: z.string(),
   image:z.string().optional().nullable(),
   id:z.string()
 })
- export const GoogleUserSchema=z.object({
+ export const GoogleAccountSchema=z.object({
   email: z.string(),
-  firstName: z.string(),
+  name: z.string(),
   image:z.string().optional().nullable(),
-  id:z.string()
+})
+ export const GithubAccountSchema=z.object({
+  email: z.string(),
+  name: z.string(),
+  image:z.string().optional().nullable(),
 })

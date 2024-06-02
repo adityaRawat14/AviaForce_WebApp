@@ -34,20 +34,26 @@ const MenuBar = ({ editor,className }: { editor: any,className?:string }) => {
   const [openYoutubePopover,setOpenYoutubePopover]=useState(false)
 
 
-  const onSave =async (editor: any) => {
+  const onSave =async (editor: Editor) => {
     const editorData = editor.getHTML();
-    console.log(editorData);
+    localStorage.setItem("content",editorData);
+    toast({
+      title:"Sucess",
+      description:"Saved Sucessfully"
+    })
   };
-
+  
   const onDiscard=()=>{
-    console.log("discard!!")
+     
+    editor.commands.setContent(`<h1>Write your story ..</h1>`)
+    
   }
 
   const onPublish=()=>{
     console.log("publish!!")
   }
 
-
+  
 
 
 
@@ -565,6 +571,8 @@ import {
 } from "@/components/ui/alert-dialog"
 import { Textarea } from "../ui/textarea";
 import { addImage } from "./EditorConfigs/ImageConfig";
+import { Editor } from "@tiptap/react";
+import { toast } from "../ui/use-toast";
 
 
 const DisardDialogBox=({children,onDiscard}:any)=>

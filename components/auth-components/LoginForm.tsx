@@ -35,29 +35,15 @@ export default function  LoginForm() {
       return ;
     }
     try {
-       const loginResponse= await fetch(`http://localhost:4000/auth/login?email=${formData.data.email}&password=${formData.data.password}`)
-       const response=await loginResponse.json()
-      if(response.error){
-        toast({
-          title: "Login Failed",
-          description: response.message,
-        })
-      }else{
-        const signInResponse= await signIn('credentials',response.data) // login response ={sucess , data:{firstname,lastname,email , image}}
-
-        if(signInResponse?.status!=200){
-          toast({
-            title: "Login Failed",
-            description: "refresh and try again",
-          })
-        }
-      }
-     
+      
+         await signIn('credentials',formData.data) 
    
-    } catch (error) {
+    } catch (error:any) {
+     
+      
       toast({
         title: "Login Failed",
-        description: "Failed to login please try again later",
+        description: " try again with different credentials ..",
       })
       return ;
     }
@@ -70,7 +56,7 @@ export default function  LoginForm() {
   return (
     <div className="max-w-md w-full mx-auto bg-[#141414]  rounded-r-2xl  h-full md:w-[30rem]  text-gray-400  p-4 md:p-8 shadow-input  dark:bg-black">
     
-      <form className="my-8 text-[14px] text-gray-300" onSubmit={handleSubmit(submitForm)}>
+      <form  className="my-8 text-[14px] text-gray-300" onSubmit={handleSubmit(submitForm)}>
         <div className="mb-4 relative flex flex-col gap-2">
         <label htmlFor="email">Email Address</label>
           <InputBox

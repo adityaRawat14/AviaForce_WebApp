@@ -24,6 +24,9 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const session:any=await getServerSession(authOptions);
+  console.log(session);
+  
+  
   return (
     <html lang="en">
       <body className={montserrat.className}>

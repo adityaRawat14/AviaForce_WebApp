@@ -4,9 +4,7 @@ import { EditorContent, useEditor } from '@tiptap/react';
 import MenuBar from '@/components/Editor/MenuBar';
 import EditorSkeleton from '@/components/blog/EditorSkeleton';
 import TiptapConfig from '@/components/Editor/EditorConfigs/tiptap.config';
-import DroneLoader from '@/components/DroneLoader';
 function page() {
-
   const editor = useEditor({
     editable:true,
    content:`<h1>Write your story ..</h1>`,

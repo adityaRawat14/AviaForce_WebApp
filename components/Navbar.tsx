@@ -98,7 +98,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
             </li>
             <li>
              { 
-           !session?  <Link
+           !session.data?  <Link
                 className={`${
                   pathname === "/auth/login" && "bg-blue-100 text-blue-800"
                 } hover:bg-blue-100 hover:text-blue-800 p-2 font-semibold rounded-lg transition-all duration-300`}

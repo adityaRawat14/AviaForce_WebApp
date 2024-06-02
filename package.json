@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^3.4.2",
+    "@prisma/client": "^5.11.0",
     "@radix-ui/react-alert-dialog": "^1.0.5",
     "@radix-ui/react-avatar": "^1.0.4",
     "@radix-ui/react-dialog": "^1.0.5",
@@ -37,6 +38,7 @@
     "@types/react": "18.2.20",
     "@types/react-dom": "18.2.7",
     "autoprefixer": "10.4.15",
+    "bcrypt": "^5.1.1",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.0.0",
     "dotenv": "^16.3.1",
@@ -50,6 +52,7 @@
     "next-auth": "^4.24.7",
     "nodemailer": "^6.9.4",
     "postcss": "8.4.28",
+    "prisma": "^5.11.0",
     "react": "^18.2.0",
     "react-animate": "^3.0.0",
     "react-dom": "18.2.0",
@@ -68,5 +71,8 @@
     "lib": "lib"
   },
   "author": "utkarsh-ojha",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "@types/bcrypt": "^5.0.2"
+  }
 }

@@ -1,0 +1,52 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id            String    @id @default(auto()) @map("_id") @db.ObjectId
+  name          String?
+  email         String   @unique
+  image         String?   @default("")
+  password      String?
+  createdAt     DateTime  @default(now())
+  blogs        Blog[]   
+  contactUrls  Json?  // [{platform:'instagram':"https://www.instagram.com"},{platform:'linkedin':"https://www.linkedin.com"},{platform:'twitter':"https://www.twitter.com"}]
+  provider      String?
+   
+}
+
+
+model Blog {
+  id          String     @id @default(auto()) @map("_id") @db.ObjectId
+  title        String?
+  subtitle     String?
+  description   String?
+  createdAt   DateTime  @default(now())
+  image       String?
+  data        String
+  authorId    String     @db.ObjectId
+  author      User      @relation(fields: [authorId], references: [id])
+  tags        BlogTag[]
+}
+
+model Tag {
+  id        String    @id @default(auto()) @map("_id") @db.ObjectId
+  name      String    @unique
+  blogs     BlogTag[]
+}
+
+model BlogTag {
+    id        String    @id @default(auto()) @map("_id") @db.ObjectId
+  blog       Blog     @relation(fields: [blogId], references: [id])
+  blogId     String   @db.ObjectId
+  tag        Tag      @relation(fields: [tagId], references: [id])
+  tagId      String   @db.ObjectId
+}
