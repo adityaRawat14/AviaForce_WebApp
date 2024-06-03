@@ -4,16 +4,17 @@ import { getToken } from 'next-auth/jwt'
 
 export async function middleware(request: NextRequest) {
     const token=await getToken({req:request})
-  console.log("this is token from middleware:",token);
   
   
-  if(request.nextUrl.pathname=='/auth/login' && token?.email){
+  if((request.nextUrl.pathname=='/auth/login' || request.nextUrl.pathname=='/auth/signup') && token?.id){
+
     return NextResponse.redirect(new URL('/',request.url))
   }
-  if(request.nextUrl.pathname=='/auth/signup' && token?.email){
-    return NextResponse.redirect(new URL('/',request.url))
-  }
-  if(request.nextUrl.pathname=='/blogs/write' && !token?.email){
+ 
+  if((request.nextUrl.pathname=='/blogs/write' ||
+      request.nextUrl.pathname=='/profile'
+)
+  && !token?.email){
     return NextResponse.redirect(new URL('/blogs',request.url))
   }
 
