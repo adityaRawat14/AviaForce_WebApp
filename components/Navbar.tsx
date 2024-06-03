@@ -5,7 +5,7 @@ import Link from "next/link";
 import { motion, AnimatePresence, spring } from "framer-motion";
 import { memo, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import { useSession } from "next-auth/react";
+import { signOut, useSession } from "next-auth/react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 
  function Navbar() {
@@ -98,7 +98,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
             </li>
             <li>
              { 
-           !session.data?  <Link
+           !session?.data?.user?.email ?  <Link
                 className={`${
                   pathname === "/auth/login" && "bg-blue-100 text-blue-800"
                 } hover:bg-blue-100 hover:text-blue-800 p-2 font-semibold rounded-lg transition-all duration-300`}
@@ -111,8 +111,8 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
                    <AccountDropdown>
                    <Avatar className=" h-8 w-8">
                     <AvatarImage
-                      src="https://avatars.githubusercontent.com/u/125037123?v=4"
-                      alt="@shadcn"
+                      src={session.data.user.image && session.data.user.image.length>0 ? session.data.user.image : ""}
+                      alt="profile-image"
                     />
                     <AvatarFallback className="bg-blue-100 text-black"><CiUser /></AvatarFallback>
                   </Avatar>
@@ -212,8 +212,10 @@ export function AccountDropdown({children}:{children:React.ReactNode}) {
         
         
         <DropdownMenuItem>
-          <CiLogout className="mr-2 h-4 w-4" />
+        <button className="flex gap-2" onClick={()=>{signOut()}}>
+        <CiLogout className="mr-2 h-4 w-4" />
           <span>Log out</span>
+        </button>
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
