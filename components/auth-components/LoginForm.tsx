@@ -123,11 +123,11 @@ export default function  LoginForm() {
         </span>
       </form>
         <div className="flex  gap-5 ">
-          <OAuthButton   disabled={isLoading} type="github">
-          <BottomGradient />
-          </OAuthButton>
           <OAuthButton  disabled={isLoading} type="google">
            <BottomGradient />
+          </OAuthButton>
+          <OAuthButton   disabled={isLoading} type="github">
+          <BottomGradient />
           </OAuthButton>
          
         </div>

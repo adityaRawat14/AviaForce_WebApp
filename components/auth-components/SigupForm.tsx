@@ -51,7 +51,7 @@ export default function SignupForm() {
     );
 
     const response = await signupResponse.json();
-    console.log(response);
+    console.log(response);  
     
     if (response.error) {
       toast({
@@ -195,10 +195,10 @@ export default function SignupForm() {
         </span>
       </form>
       <div className="flex  gap-5 ">
-        <OAuthButton type="github">
+        <OAuthButton type="google">
           <BottomGradient />
         </OAuthButton>
-        <OAuthButton type="google">
+        <OAuthButton type="github">
           <BottomGradient />
         </OAuthButton>
       </div>
